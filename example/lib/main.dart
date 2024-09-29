@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:plaude_flutter_example/plaude_flutter.dart';
+import 'package:plaude_flutter/plaude_flutter.dart';
 
 void main() {
   runApp(const App());
@@ -22,17 +22,6 @@ class App extends StatelessWidget {
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
-
-  void openMessenger(BuildContext context, [String? token]) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      useSafeArea: true,
-      builder: (context) {
-        return PlaudeMessenger(token: token);
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
