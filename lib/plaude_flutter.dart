@@ -1,31 +1,32 @@
 library plaude_flutter;
 
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class PlaudeMessenger extends StatefulWidget {
+class _PlaudeMessenger extends StatefulWidget {
+  final String appId;
   final String? token;
 
-  const PlaudeMessenger({super.key, this.token});
+  const _PlaudeMessenger({
+    required this.appId,
+    this.token,
+  });
 
   @override
-  State<PlaudeMessenger> createState() => _PlaudeMessengerState();
+  State<_PlaudeMessenger> createState() => _PlaudeMessengerState();
 }
 
-class _PlaudeMessengerState extends State<PlaudeMessenger> {
+class _PlaudeMessengerState extends State<_PlaudeMessenger> {
   late final WebViewController _controller;
 
   @override
   void initState() {
     _controller = WebViewController();
     _controller.loadRequest(
-      Uri.parse('https://embed.plaudeai.com/messenger'),
-      headers: {
-        HttpHeaders.authorizationHeader: 'Bearer ${widget.token}',
-      },
+      Uri.parse(
+        'https://embed.plaudeai.com/messenger?appId=${widget.appId}&token=${widget.token}',
+      ),
     );
     super.initState();
   }
@@ -41,13 +42,16 @@ class _PlaudeMessengerState extends State<PlaudeMessenger> {
   }
 }
 
-void openMessenger(BuildContext context, [String? token]) {
+void openMessenger(BuildContext context, String appId, [String? token]) {
   showModalBottomSheet(
     context: context,
     isScrollControlled: true,
     useSafeArea: true,
-    builder: (context) {
-      return PlaudeMessenger(token: token);
+    builder: (_) {
+      return _PlaudeMessenger(
+        appId: appId,
+        token: token,
+      );
     },
   );
 }
