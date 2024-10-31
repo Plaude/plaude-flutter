@@ -42,7 +42,11 @@ class _PlaudeMessengerState extends State<_PlaudeMessenger> {
   }
 }
 
-void openMessenger(BuildContext context, String appId, [String? token]) {
+void openMessenger({
+  required BuildContext context,
+  required String appId,
+  String? token,
+}) {
   showModalBottomSheet(
     context: context,
     isScrollControlled: true,
