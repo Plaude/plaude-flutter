@@ -25,7 +25,7 @@ class _PlaudeMessengerState extends State<_PlaudeMessenger> {
     _controller = WebViewController();
     _controller.loadRequest(
       Uri.parse(
-        'https://embed.plaudeai.com/messenger?appId=${widget.appId}&token=${widget.token}',
+        'https://embed.plaudeai.com/messenger/${widget.appId}${widget.token != null ? '&token=${widget.token}' : ''}',
       ),
     );
     super.initState();

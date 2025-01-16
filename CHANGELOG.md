@@ -1,3 +1,7 @@
+## 1.0.3
+
+- Update Messenger URI.
+
 ## 1.0.1
 
 - Name openMessenger() method parameters.
